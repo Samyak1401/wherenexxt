@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
+
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -28,3 +30,5 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/customer/login', 'index')->name('customer.loginview');
     Route::post('/customer/login', 'login')->name('customer.login');
 });
+
+Route::get('/admin/login', [AdminController::class, 'index']);
