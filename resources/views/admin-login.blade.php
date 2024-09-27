@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="{{ route('admin.login') }}" method="POST">
         @csrf
         <label for="email">Email:</label>
         <input type="email" id="aemail" name="email"><br><br>

@@ -32,3 +32,5 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::get('/admin/login', [AdminController::class, 'index']);
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

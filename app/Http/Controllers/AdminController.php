@@ -21,9 +21,16 @@ class AdminController extends Controller
         if ($validate->passes()) {
             $admin = $request->aemail;
             $password = $request->apassword;
-            if ($admin == "Whernext05admin@gmail.com" && $password = "wherenext05") {
-                return redirect("")->with("", "");
+
+            if ($admin == "Whernext05admin@gmail.com" && $password == "wherenext05") {
+                return redirect("admin-dashboar")->with("success", "you are loggin");
             }
+        } else {
+            return back()->withErrors($validate)->withInput();
         }
+    }
+    public function dashboard()
+    {
+        return view('admin-dashboard');
     }
 }
