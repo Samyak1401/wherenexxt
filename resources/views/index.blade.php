@@ -15,8 +15,11 @@
       <li><a href="">Home</a></li>
       <li><a href="">About</a></li>
       <li><a href="">Contact</a></li>
-      <li><a href="">Search</a></li>
-      <li><a href="">Register</a></li>
+      <li><a href="{{ route('customer.registerview') }}">Register</a></li>
+      @if(Session::has('fname'))
+        <li>{{ Session('fname') }}</li>
+        <li><a href="{{ route('customer.logout') }}">logout</a></li>
+      @endif
     </ul>
   </nav>
   

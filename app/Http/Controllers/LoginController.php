@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,5 +35,11 @@ class LoginController extends Controller
         } else {
             return back()->withErrors($validate)->withInput();
         }
+    }
+    public function logout()
+    {
+
+        Auth::logout();
+        return redirect()->route('customer.home')->with('logout', 'You have logged out successfully');
     }
 }

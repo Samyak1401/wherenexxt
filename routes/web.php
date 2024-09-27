@@ -29,6 +29,7 @@ Route::controller(RegistrationController::class)->group(function () {
 Route::controller(LoginController::class)->group(function () {
     Route::get('/customer/login', 'index')->name('customer.loginview');
     Route::post('/customer/login', 'login')->name('customer.login');
+    Route::get('/customer/logout', 'logout')->name('customer.logout');
 });
 
 Route::get('/admin/login', [AdminController::class, 'index']);
