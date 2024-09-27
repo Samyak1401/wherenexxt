@@ -7,12 +7,16 @@
     <title>Document</title>
 </head>
 <body>
+    @if(Session::has('error'))
+        {{ session('error') }}
+    </div>
+    @endif
     <form action="{{ route('admin.login') }}" method="POST">
         @csrf
         <label for="email">Email:</label>
-        <input type="email" id="aemail" name="email"><br><br>
+        <input type="email" id="aemail" name="aemail" value={{ old('aemail') }} ><br><br>
         <label for="password">Password</label>
-        <input type="password" id="apassword" name="password">
+        <input type="password" id="apassword" name="apassword">
         <button type="submit">Login</button>
     </form>
 </body>
