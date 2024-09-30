@@ -6,12 +6,17 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('customer.register') }}">
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-label for="First Name"  value="{{ __('First Name') }}"  />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="f_name" :value="old('f_name')" required autofocus autocomplete="name" />
+            </div>
+
+             <div>
+                <x-label for="Last Name"  value="{{ __('Last Name') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="l_name" :value="old('l_name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
@@ -25,8 +30,8 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-label for="confirm_password" value="{{ __('Confirm Password') }}" />
+                <x-input id="confirm_password" class="block mt-1 w-full" type="password" name="confirm_password" required autocomplete="new-password" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
