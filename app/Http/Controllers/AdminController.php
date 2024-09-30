@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -36,5 +37,11 @@ class AdminController extends Controller
     public function dashboard()
     {
         return view('admin-dashboard');
+    }
+
+    public function customer(Request $request)
+    {
+        $customers = User::all();
+        return view('customer-view', compact('customers'));
     }
 }

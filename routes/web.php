@@ -35,5 +35,4 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('/admin/login', [AdminController::class, 'index']);
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
-Route::get('/customer', 'customer-view');
+Route::get('/customer/view', [AdminController::class, 'customer'])->name('customer.view');
