@@ -43,13 +43,9 @@ class RegistrationController extends Controller
             $user->Customer_EMAIL = $request->email;
             $user->customer_password = Hash::make($request->password);
             $user->save();
-
-            event(new Registered($user));
-
-            $subject = "verify your mail";
-
-            Mail::to($request->email)->send(new WelcomeMail());
             $request->session()->put('fname', $user->Customer_Fname = $request->f_name);
+            Mail::to($request->email)->send(new WelcomeMail($user->Customer_Fname));
+
             /*
             DB::insert('INSERT INTO `customer`(`Customer_Fname`, `Customer_Lname`, `Customer_Email`, `Customer_Password`, `role`, `email_verfied_at`, `remember_token`, `created_at`, `updated_at`) VALUES (?,?,?,?,?,?,?,?,?)', [$request->f_name, $request->l_name, $request->email, Hash::make($request->password), 'customer', NULL, NULL, now(), now()]);
             $request->session()->put('fname',  $request->f_name);*/
