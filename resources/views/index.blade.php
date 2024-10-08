@@ -10,15 +10,19 @@
 
     
 </head>
+<body>
   <nav class="navbar">
     <ul class="nav-links">
       <li><a href="">Home</a></li>
       <li><a href="">About</a></li>
       <li><a href="">Contact</a></li>
-      <li><a href="{{ route('customer.registerview') }}">Register</a></li>
       @if(Session::has('fname'))
         <li>{{ Session('fname') }}</li>
-              @endif
+        <li><a href="{{ route('customer.logout') }}">Logout</a></li>
+      @else
+        <li><a href="{{ route('customer.loginview') }}">Login</a></li>
+        
+       @endif
     </ul>
   </nav>
   

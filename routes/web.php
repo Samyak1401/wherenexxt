@@ -35,6 +35,7 @@ Route::group(['prefix' => 'customer'], function () {
     Route::post('/login/process', [LoginController::class, 'login'])->name('customer.login');
     Route::get('/register', [RegistrationController::class, 'index'])->name('customer.registerview');
     Route::post('/register/process', [RegistrationController::class, 'register'])->name('customer.register');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('customer.logout');
 });
 
 

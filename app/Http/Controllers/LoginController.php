@@ -36,9 +36,10 @@ class LoginController extends Controller
             return back()->withErrors($validate)->withInput();
         }
     }
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('customer.loginview');
+        $request->session()->flush();
+        return redirect()->route('customer.home');
     }
 }
