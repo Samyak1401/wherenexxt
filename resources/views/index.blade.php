@@ -18,8 +18,7 @@
       <li><a href="{{ route('customer.registerview') }}">Register</a></li>
       @if(Session::has('fname'))
         <li>{{ Session('fname') }}</li>
-        <li><a href="{{ route('customer.logout') }}">logout</a></li>
-      @endif
+              @endif
     </ul>
   </nav>
   

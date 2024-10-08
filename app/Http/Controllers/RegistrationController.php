@@ -16,6 +16,7 @@ use function Symfony\Component\Clock\now;
 class RegistrationController extends Controller
 {
     //
+
     public function index()
     {
         return view("register");

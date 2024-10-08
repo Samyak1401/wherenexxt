@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 
 /*Route::get('/', function () {
@@ -20,17 +23,23 @@ Route::middleware([
     })->name('dashboard');
 });*/
 
-Route::view('/', 'index')->name('customer.home');
-Route::controller(RegistrationController::class)->group(function () {
-    Route::get('/customer/register', 'index')->name('customer.registerview');
-    Route::post('/customer/register', 'register')->name('customer.register');
+
+Route::get('/', function () {
+    return view('index');
+})->name('customer.home');
+
+
+Route::group(['prefix' => 'customer'], function () {
+
+    Route::get('/login', [LoginController::class, 'index'])->name('customer.loginview');
+    Route::post('/login/process', [LoginController::class, 'login'])->name('customer.login');
+    Route::get('/register', [RegistrationController::class, 'index'])->name('customer.registerview');
+    Route::post('/register/process', [RegistrationController::class, 'register'])->name('customer.register');
 });
 
-Route::controller(LoginController::class)->group(function () {
-    Route::get('/customer/login', 'index')->name('customer.loginview');
-    Route::post('/customer/login', 'login')->name('customer.login');
-    Route::get('/customer/logout', 'logout')->name('customer.logout');
-});
+
+
+
 
 Route::get('/admin/login', [AdminController::class, 'index']);
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
