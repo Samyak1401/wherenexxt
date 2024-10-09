@@ -38,9 +38,10 @@ Route::group(['prefix' => 'customer'], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('customer.logout');
 });
 
+Route::get('/verify-otp', [LoginController::class, 'verifyotp'])->name('verify.otp');
+Route::post('/verify-otp', [LoginController::class, 'verifyOtp']);
 
-
-
+Route::get('/verifyotp', [LoginController::class, 'showotpform'])->name('showotpform');
 
 Route::get('/admin/login', [AdminController::class, 'index']);
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
