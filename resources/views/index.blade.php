@@ -43,7 +43,7 @@
              <li class="nav-item">
             <a class="nav-link" href="{{ route('customer.loginview') }}"aria-disabled="true">Login</a>
           </li>
-        
+
         @endif
         </ul>
         <form role="search">

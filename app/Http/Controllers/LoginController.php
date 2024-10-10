@@ -32,12 +32,17 @@ class LoginController extends Controller
             // Authenticate user here
             $customer = User::where('Customer_Email', $request->email)->get()->first();
             if ($customer && Hash::check($request->password, $customer->Customer_Password)) {
-                // Login successful
+
+                // User authenticated, generate OTP
                 $otp = $this->generateOTP();
+
+                // Store OTP in session
                 session(['otp' => $otp]);
+
+                // Send OTP to user's email
                 $this->sendOtpMail($customer->Customer_Email, $otp);
                 $request->session()->put('fname', $customer->Customer_Fname);
-                return redirect()->route('showotpform');
+                return back()->with('successotp', 'otp sent successfully')->withInput();
             } else {
                 return back()->with('error', 'Invalid email or password');
             }
@@ -53,7 +58,8 @@ class LoginController extends Controller
     }
     public function generateOTP()
     {
-        return rand(100000, 999999); // Generates a 6-digit OTP
+        // Generates a 6-digit OTP
+        return rand(100000, 999999);
     }
     public function sendOtpMail($user, $otp)
     {
@@ -71,9 +77,9 @@ class LoginController extends Controller
         // Compare the OTP entered by the user with the stored OTP
         if ($otp == session('otp')) {
             session()->forget('otp'); // Clear OTP after successful verification
-            return redirect()->route('customer.home'); // Redirect to the desired page after login
+            return redirect()->route('customer.home')->with('verfiedotp', 'otp verified successfully,you will be redirect to home page'); // Redirect to the desired page after login
         } else {
-            return back()->withErrors(['otp' => 'Invalid OTP.']);
+            return back()->with('wrongotp', 'Invalid OTP.');
         }
     }
 }
