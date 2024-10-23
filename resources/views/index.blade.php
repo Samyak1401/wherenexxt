@@ -10,6 +10,13 @@
 
     
 </head>
+@if(Session::has('verfiedotp'))
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    alert("{{ session('verifiedotp') }}");
+  });
+  </script>
+@endif
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark sticky-top fixed-top bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">

@@ -9,31 +9,29 @@
     </head>
    
      @if(Session::has('successotp'))
-        <div class="alert" role="alert" id="successAlert">
-            </div>
          <script>
              document.addEventListener('DOMContentLoaded', function() {
             alert("{{ session('successotp') }}");
         });
          </script>
-        
-    
         @endif
          @if(Session::has('wrongotp'))
-        <div class="alert" id="wrongAlert" role="alert">
-        </div>
+       
          <script>
              document.addEventListener('DOMContentLoaded', function() {
             alert("{{ session('wrongotp') }}");
         });
          </script>
-        @endif        
+        @endif
+          @if (Session::has('error'))
+                 <script>
+             document.addEventListener('DOMContentLoaded', function() {
+            alert("{{ session('error') }}");
+        });
+         </script>
+            @endif        
           <div class="wrapper">
-                @if (Session::has('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
+              
        <form action="{{ route('customer.login') }} " method="POST">
             @csrf
             <h1>Login</h1>
@@ -56,7 +54,7 @@
             <form method="POST" action="{{ route('verify.otp') }}">
                 @csrf
                 <div class="input-box">
-                <input type="text" name="otp" placeholder="Enter Otp" required>"           
+                <input type="text" name="otp" placeholder="Enter Otp" required>          
            </div>
            <button type="submit" class="btn">Verify Otp</button><br>
            <br>

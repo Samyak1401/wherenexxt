@@ -47,18 +47,11 @@ class RegistrationController extends Controller
             $request->session()->put('fname', $user->Customer_Fname = $request->f_name);
             Mail::to($request->email)->send(new WelcomeMail($user->Customer_Fname));
 
-            /*
-            DB::insert('INSERT INTO `customer`(`Customer_Fname`, `Customer_Lname`, `Customer_Email`, `Customer_Password`, `role`, `email_verfied_at`, `remember_token`, `created_at`, `updated_at`) VALUES (?,?,?,?,?,?,?,?,?)', [$request->f_name, $request->l_name, $request->email, Hash::make($request->password), 'customer', NULL, NULL, now(), now()]);
-            $request->session()->put('fname',  $request->f_name);*/
+
+
             return redirect()->route('customer.home')->with('succes', "You have registered successfully");
         } else {
             return redirect()->back()->withErrors($validate)->withInput();
         }
     }
-    /* public function logout(Request $request)
-    {
-        $request->session()->forget('fname');
-
-        return redirect()->route('customer.home')->with('logout', 'You have logged out successfully');
-    }*/
 }

@@ -5,76 +5,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel 11 Multi Auth</title>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body class="bg-light">
-        <section class=" p-3 p-md-4 p-xl-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                        <div class="card border border-light-subtle rounded-4">
-                            <div class="card-body p-3 p-md-4 p-xl-5">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="mb-5">
-                                            <h4 class="text-center">Register Here</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <form action="{{ route('customer.register') }}" method="POST">
-                                    @csrf
-                                     <div class="row gy-3 overflow-hidden">
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" value="{{ old('f_name') }}" class="form-control" name="f_name" id="f_name" placeholder="xyz" >
-                                                <label for="First Name" class="form-label">First Name</label>
-                                                 @error('f_name')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+        <div class="wrapper">
+            <h4 class="text-center">Register Here</h4>
+            <form action="{{ route('customer.register') }}" method="POST">
+                @csrf
+                <div class="input-box">
+                    <input type="text" value="{{ old('f_name') }}" class="form-control" name="f_name" id="f_name" placeholder="First Name" >
+                    
+                    @error('f_name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                                                         
+                <div class="input-box">
+                    <input type="text" value="{{ old('l_name') }}" class="form-control" name="l_name" id="l_name" placeholder="Last Name" >
+                    
+                    @error('l_name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                                        
+                <div class="input-box">
+                    <input type="email" value="{{ old('email') }}" class="form-control" name="email" id="email" placeholder="Email" >
+                    @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
                                        
-                                          <div class="row gy-3 overflow-hidden">
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" value="{{ old('l_name') }}" class="form-control" name="l_name" id="l_name" placeholder="xyz" >
-                                                <label for="Last Name" class="form-label">Last Name</label>
-                                                 @error('l_name')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="email" value="{{ old('email') }}" class="form-control" name="email" id="email" placeholder="name@example.com" >
-                                                <label for="email" class="form-label">Email</label>
-                                                 @error('email')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" >
-                                                <label for="password" class="form-label">Password</label>
-                                                 @error('password')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password" >
-                                                <label for="password" class="form-label">Confirm Password</label>
-                                                 @error('confirm_password')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="d-grid">
-                                                <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Register Now</button>
-                                            </div>
-                                        </div>
-                                    </=>
-                                </form>
+                                       
+                <div class="input-box">
+                    <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" >
+                    
+                    @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                                  
+                <div class="input-box">
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password" >
+                   
+                        @error('confirm_password')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                </div>
+                <button class="btn " type="submit">Register Now</button>
+                                
+            </form>
                                 <div class="row">
                                     <div class="col-12">
                                         <hr class="mt-5 mb-4 border-secondary-subtle">
