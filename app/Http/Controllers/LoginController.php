@@ -39,7 +39,7 @@ class LoginController extends Controller
                 // Store OTP in session
                 session(['otp' => $otp]);
 
-                // Send OTP to user's email
+                // calling SendOtpMail function
                 $this->sendOtpMail($customer->Customer_Email, $otp);
                 $request->session()->put('fname', $customer->Customer_Fname);
                 return back()->with('successotp', 'otp sent successfully')->withInput();
@@ -53,7 +53,10 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
+        //deleting user session
         $request->session()->flush();
+
         return redirect()->route('customer.home');
     }
     public function generateOTP()
@@ -68,6 +71,7 @@ class LoginController extends Controller
             'otp' => $otp
         ];
 
+        //sending mail to user 
         Mail::to($user)->send(new OtpMail($details));
     }
     public function verifyOtp(Request $request)
