@@ -43,7 +43,12 @@ Route::post('/verify-otp', [LoginController::class, 'verifyOtp']);
 
 Route::get('/verifyotp', [LoginController::class, 'showotpform'])->name('showotpform');
 
-Route::get('/admin/login', [AdminController::class, 'index']);
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/customer/view', [AdminController::class, 'customer'])->name('customer.view');
+Route::group(['prefix' => 'admin'], function () {
+    Route::controller(AdminController::class)->group(function () {;
+        Route::get('/login', 'index');
+        Route::post('/login', 'login')->name('admin.login');
+        Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
+        Route::get('/customer/view', 'customer')->name('customer.view');
+        Route::get('/addpackage', 'AddPackage')->name('AddPackageView');
+    });
+});

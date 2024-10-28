@@ -42,4 +42,8 @@ class AdminController extends Controller
         $customers = User::all();
         return view('customer-view', compact('customers'));
     }
+    public function AddPackage()
+    {
+        return view('admin.add-package');
+    }
 }
