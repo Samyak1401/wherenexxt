@@ -13,7 +13,7 @@ class AdminController extends Controller
     //
     public function index()
     {
-        return view('admin-login');
+        return view('admin.admin-login');
     }
     public function login(Request $request)
     {
@@ -34,7 +34,7 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        return view('admin-dashboard');
+        return view('admin.admin-dashboard');
     }
 
     public function customer(Request $request)
