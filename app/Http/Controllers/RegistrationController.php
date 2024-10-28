@@ -46,9 +46,6 @@ class RegistrationController extends Controller
             $user->save();
             $request->session()->put('fname', $user->Customer_Fname = $request->f_name);
             Mail::to($request->email)->send(new WelcomeMail($user->Customer_Fname));
-
-
-
             return redirect()->route('customer.home')->with('succes', "You have registered successfully");
         } else {
             return redirect()->back()->withErrors($validate)->withInput();

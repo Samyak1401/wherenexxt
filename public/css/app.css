@@ -82,7 +82,7 @@ body {
 .wrapper .btn {
     width: 100%;
     height: 45px;
-    background: #fff;
+    background-color: blanchedalmond;
     border: none;
     outline: none;
     border-radius: 40px;
@@ -96,9 +96,10 @@ body {
     font-size: 14.5px;
     text-align: center;
     margin: 20px 0 15px;
+    background-color: blanchedalmond;
 }
 .register-link p a {
-    color: black;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: 600;
 }

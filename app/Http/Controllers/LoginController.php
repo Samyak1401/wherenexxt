@@ -58,6 +58,7 @@ class LoginController extends Controller
 
         return redirect()->route('customer.home');
     }
+
     public function generateOTP()
     {
         // Generates a 6-digit OTP
@@ -80,7 +81,7 @@ class LoginController extends Controller
         // Compare the OTP entered by the user with the stored OTP
         if ($otp == session('otp')) {
             session()->forget('otp'); // Clear OTP after successful verification
-            return redirect()->route('customer.home')->with('verfiedotp', 'otp verified successfully,you have been redirect to home page'); // Redirect to the desired page after login
+            return redirect()->route('customer.home')->with('logined', 'otp verified successfully,you have been redirect to home page'); // Redirect to the desired page after login
         } else {
             return back()->with('wrongotp', 'Invalid OTP.');
         }

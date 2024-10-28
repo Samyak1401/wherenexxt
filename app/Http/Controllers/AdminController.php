@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -20,20 +22,16 @@ class AdminController extends Controller
             'apassword' => 'required',
         ]);
         if ($validate->passes()) {
-            if ($request->aemail == "wherenext05@gmail.com") {
-                if ($request->apassword == "wherenext05") {
-                    return redirect()->route('admin.dashboard')->with('success', 'Login successful');
-                } else {
-                    return back()->with('error', 'Invalid password');
-                }
+            $admin = Admin::where('Admin_Email', $request->aemail)->get()->first();
+            if ($admin && md5($request->apassword) == $admin->Admin_Password) {
+                return redirect()->route('admin.dashboard')->with('success', 'Login successful');
             } else {
-                return back()->with('error', 'Invalid email');
+                return back()->with('error', 'Invalid password');
             }
         } else {
             return back()->withErrors($validate)->withInput();
         }
     }
-
     public function dashboard()
     {
         return view('admin-dashboard');

@@ -10,10 +10,10 @@
 
     
 </head>
-@if(Session::has('verfiedotp'))
+@if(Session::has('logined'))
  <script>
     document.addEventListener('DOMContentLoaded', function() {
-    alert("{{ session('verifiedotp') }}");
+    alert("{{ session('logined') }}");
   });
   </script>
 @endif
