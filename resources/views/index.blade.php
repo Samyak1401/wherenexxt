@@ -31,10 +31,10 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="#">Packages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="#footer">Contact Us</a>
           </li>
           
            @if(Session::has('fname'))
@@ -59,8 +59,36 @@
       </div>
     </div>
   </nav>
-  
-  
+  <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+       <video class="d-block w-100"  autoplay muted>
+        <source src="{{ asset('img/pexels-fearless-dreams-5598970 (2160p).mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ asset('img/t1.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <video class="d-block w-100"  autoplay muted>
+        <source src="{{ asset('img/pexels_videos_1409899 (2160p).mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  <section id="Footer">
+    
+  </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

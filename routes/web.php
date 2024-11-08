@@ -50,5 +50,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
         Route::get('/customer/view', 'customer')->name('customer.view');
         Route::get('/addpackage', 'AddPackage')->name('AddPackageView');
+        Route::post('/addpackage', 'storePackage')->name('storePackage');
+        Route::get('/additinerary/{id}', 'ViewItinerary')->name('AddItineraryview');
     });
 });
