@@ -53,6 +53,7 @@ class AdminController extends Controller
     public function storePackage(Request $request)
     {
         $validate = Validator::make($request->all(), [
+            'package_id' => 'required|numeric|unique:package,Package_Id',
             'destination' => 'required|string',
             'description' => 'required|string',
             'inclusions' => 'required|string',
@@ -66,15 +67,8 @@ class AdminController extends Controller
 
         ]);
         if ($validate->passes()) {
-
-            /*  $imagePath = null;
-            $path = null;
-            if ($request->hasFile('pimage')) {
-                $imagePath = $request->file('pimage');
-                $path = Storage::putFile('public', $imagePath);
-            }*/
-
             $package = new Package();
+            $package->Package_Id = $request->package_id;
             $package->Destination = $request->destination;
             $package->Description = $request->description;
             $package->Inclusions = $request->inclusions;
@@ -93,15 +87,14 @@ class AdminController extends Controller
                 $package->Poster_image = $fileName;
             }
             $package->save();
-            return redirect()->route('AddItineraryview', ['package_id' => $package->Package_Id]);
+            return redirect()->route('AddItineraryview', ['id' => $request->package_id]);
         } else {
             return redirect()->back()->withErrors($validate)->withInput();
         }
     }
-    public function ViewItinerary($package_id)
+    public function ViewItinerary($id)
     {
-
-        return view('admin.add-itinerary');
+        return view('admin.add-itinerary', compact('id'));
     }
     public function displaypackage()
     {

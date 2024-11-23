@@ -14,6 +14,15 @@
     <form action="{{ route('storePackage') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
+            <label for="">Package Id:</label>
+            <input type="number" name="package_id" placeholder="Enter unique Package Id">
+            <span>
+                @error('package_id')
+                    {{ $message }}
+                @enderror
+            </span>
+        </div>
+        <div>
             <label for="package_name">Destination:</label>
             <input type="text" name="destination"  id="destination" value="{{ old('destination')}}">
             <span>

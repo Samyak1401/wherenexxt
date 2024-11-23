@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -51,7 +51,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/customer/view', 'customer')->name('customer.view');
         Route::get('/addpackage', 'AddPackage')->name('AddPackageView');
         Route::post('/addpackage', 'storePackage')->name('storePackage');
-        Route::get('/additinerary/{package_id}', 'ViewItinerary')->name('AddItineraryview');
+        Route::get('/additinerary/{id}', 'ViewItinerary')->name('AddItineraryview');
     });
 });
 
