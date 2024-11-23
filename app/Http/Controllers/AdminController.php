@@ -5,22 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\package;
 use App\Models\User;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {
-    //
-    public function index()
+
+    public function index() //returns the admin login page view
     {
         return view('admin.admin-login');
     }
-    public function login(Request $request)
+    public function login(Request $request) //process the admin login request
     {
+        //valdiate entered data
         $validate = Validator::make($request->all(), [
             'aemail' => 'required',
             'apassword' => 'required',
@@ -36,22 +34,23 @@ class AdminController extends Controller
             return back()->withErrors($validate)->withInput();
         }
     }
-    public function dashboard()
+    public function dashboard() //return the view of the admin dashboard
     {
         return view('admin.admin-dashboard');
     }
 
-    public function customer(Request $request)
+    public function customer(Request $request) //display all the customers details
     {
-        $customers = User::all();
+        $customers = User::all(); //fetch all the customer from database
         return view('customer-view', compact('customers'));
     }
-    public function AddPackage()
+    public function AddPackage() //return the view for adding a new package
     {
         return view('admin.add-package');
     }
-    public function storePackage(Request $request)
+    public function storePackage(Request $request) //proccess the request for storing a package
     {
+        //validate entered data  using validator class in laravel framework.
         $validate = Validator::make($request->all(), [
             'package_id' => 'required|numeric|unique:package,Package_Id',
             'destination' => 'required|string',
@@ -87,7 +86,7 @@ class AdminController extends Controller
                 $package->Poster_image = $fileName;
             }
             $package->save();
-            return redirect()->route('AddItineraryview', ['id' => $request->package_id]);
+            return redirect()->route('AddItineraryview', ['id' => $request->package_id]); //return view of add itinerary view passing id as parameter
         } else {
             return redirect()->back()->withErrors($validate)->withInput();
         }
@@ -95,10 +94,5 @@ class AdminController extends Controller
     public function ViewItinerary($id)
     {
         return view('admin.add-itinerary', compact('id'));
-    }
-    public function displaypackage()
-    {
-        $packages = Package::all();
-        return view('index', compact('packages'));
     }
 }
