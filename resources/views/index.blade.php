@@ -89,7 +89,7 @@
 <section id="packages">
   @foreach ($packages as $package) 
   <div class="card" style="width: 18rem;">
-  <img src="{{ asset($package->Poster_image) }}" alt="...." class="card-img-top" style="max-width: 200px;">
+  <img src="{{ asset('images/'.$package->Poster_image) }}" alt="...." class="card-img-top" style="max-width: 200px;">
 
   <div class="card-body">
     <h5 class="card-title">{{ $package->Destination }}</h5>
@@ -98,7 +98,6 @@
   </div>
 </div>
   @endforeach
-    
 
 </section>
   <section id="Footer">

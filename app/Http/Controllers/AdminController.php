@@ -67,12 +67,12 @@ class AdminController extends Controller
         ]);
         if ($validate->passes()) {
 
-            $imagePath = null;
+            /*  $imagePath = null;
             $path = null;
             if ($request->hasFile('pimage')) {
                 $imagePath = $request->file('pimage');
                 $path = Storage::putFile('public', $imagePath);
-            }
+            }*/
 
             $package = new Package();
             $package->Destination = $request->destination;
@@ -85,7 +85,13 @@ class AdminController extends Controller
             $package->Start_Date = $request->start_date;
             $package->start_place = $request->start_place;
             $package->End_Date = $request->end_date;
-            $package->Poster_image = $path;
+            if ($request->hasFile('pimage')) {
+                $file = $request->file('pimage');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $extension;
+                $file->move('images/', $fileName);
+                $package->Poster_image = $fileName;
+            }
             $package->save();
             return redirect()->route('AddItineraryview', ['package_id' => $package->Package_Id]);
         } else {
@@ -95,7 +101,7 @@ class AdminController extends Controller
     public function ViewItinerary($package_id)
     {
 
-        return view('admin.add-itinerary', compact('package_id'));
+        return view('admin.add-itinerary');
     }
     public function displaypackage()
     {
