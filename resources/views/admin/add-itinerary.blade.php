@@ -1,2 +1,2 @@
 add itenineary
-{{ $id }}
+{{ $package_id  }}

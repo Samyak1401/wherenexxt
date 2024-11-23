@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Add Package</title>
 </head>
 <body>
-    <form action="{{ route('storePackage') }}" method="POST">
+
+        
+    
+    <form action="{{ route('storePackage') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div>
-            <label for="">Id:</label>
-            <input type="number" name="id" id="id">
-            <span>
-                @error('id')
-                    {{ $message }}
-                @enderror
-            </span>
-        </div>
         <div>
             <label for="package_name">Destination:</label>
             <input type="text" name="destination"  id="destination" value="{{ old('destination')}}">
@@ -97,6 +92,15 @@
                 @enderror
             </span>
         </div> 
+        <div>
+            <label for="">End Date:</label>
+            <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" ></input>
+            <span>
+                @error('end_date')
+                    {{ $message }}
+                @enderror
+            </span>
+        </div> 
 
          <div>
             <label for="">Start Place:</label>
@@ -109,17 +113,20 @@
         </div> 
 
         <div>
-            <label for="image">Image:</label>
-            <input type="file" name="image" multiple="true" id="image"  >
+            <label for="">Poster Image:</label>
+            <input type="file" name="pimage" id="pimage" id="pimage"  >
             <span>
-                @error('image')
+                @error('pimage')
                     {{ $message }}
                 @enderror
             </span>
         </div>
+
+       
+        
         <button type="submit">Add Package</button>
        <button type="reset">Reset</button>
     </form>
-    </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

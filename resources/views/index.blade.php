@@ -31,7 +31,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Packages</a>
+            <a class="nav-link" href="#packages">Packages</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#footer">Contact Us</a>
@@ -86,6 +86,21 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<section id="packages">
+  @foreach ($packages as $package) 
+  <div class="card" style="width: 18rem;">
+  <img src="{{ asset($package->Poster_image) }}" alt="...." class="card-img-top" style="max-width: 200px;">
+
+  <div class="card-body">
+    <h5 class="card-title">{{ $package->Destination }}</h5>
+    <p class="card-text">{{ $package->Description }}</p>
+    <a href="#" class="btn btn-primary">Book</a>
+  </div>
+</div>
+  @endforeach
+    
+
+</section>
   <section id="Footer">
     
   </section>

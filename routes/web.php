@@ -51,6 +51,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/customer/view', 'customer')->name('customer.view');
         Route::get('/addpackage', 'AddPackage')->name('AddPackageView');
         Route::post('/addpackage', 'storePackage')->name('storePackage');
-        Route::get('/additinerary/{id}', 'ViewItinerary')->name('AddItineraryview');
+        Route::get('/additinerary/{package_id}', 'ViewItinerary')->name('AddItineraryview');
     });
 });
+
+Route::get('/', [AdminController::class, 'displaypackage'])->name('home');
