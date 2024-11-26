@@ -131,7 +131,15 @@
             </span>
         </div>
 
-       
+        <div>
+            <label for="">Image:</label>
+            <input type="file" name="[]image" multiple  id="image"  >
+            <span>
+                @error('image')
+                    {{ $message }}
+                @enderror
+            </span>
+        </div>
         
         <button type="submit">Add Package</button>
        <button type="reset">Reset</button>

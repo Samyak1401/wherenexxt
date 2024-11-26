@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\image;
 use App\Models\package;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,6 +67,7 @@ class AdminController extends Controller
 
         ]);
         if ($validate->passes()) {
+
             $package = new Package();
             $package->Package_Id = $request->package_id;
             $package->Destination = $request->destination;

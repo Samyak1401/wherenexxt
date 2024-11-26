@@ -18,10 +18,12 @@ class LoginController extends Controller
     {
         return view('login');
     }
+
     public function showOtpForm()
     {
         return view('auth.otpverify');
     }
+
     public function login(Request $request)
     {
         $validate = Validator::make($request->all(), [
@@ -64,6 +66,7 @@ class LoginController extends Controller
         // Generates a 6-digit OTP
         return rand(100000, 999999);
     }
+
     public function sendOtpMail($user, $otp)
     {
         $details = [
@@ -74,6 +77,7 @@ class LoginController extends Controller
         //sending mail to user 
         Mail::to($user)->send(new OtpMail($details));
     }
+
     public function verifyOtp(Request $request)
     {
         $otp = $request->input('otp');
